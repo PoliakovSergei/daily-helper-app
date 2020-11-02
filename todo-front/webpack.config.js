@@ -5,10 +5,11 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     mode: 'development',
     context: path.resolve(__dirname, 'src'),
-    entry: './index.js',
+    entry: ['babel-polyfill', './index.js'],
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/'
     },
     plugins: [
         new HTMLWebpackPlugin({
@@ -18,12 +19,23 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
+                test: /\.s[ac]ss$/i,
+                use: ['style-loader', 'css-loader', 'sass-loader'],
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ["@babel/preset-env", "@babel/preset-react"],
+                    }
+                },
             }
         ]
     },
     devServer: {
-        port: 3000
+        port: 3000,
+        historyApiFallback: true,
     }
 }

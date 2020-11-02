@@ -7,6 +7,8 @@ import java.util.Date;
 @Data
 public class TodoTaskDto {
 
+    private final String id;
+
     private final String taskName;
 
     private final String taskDescription;

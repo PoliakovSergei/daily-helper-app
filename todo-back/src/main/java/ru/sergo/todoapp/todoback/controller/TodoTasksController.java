@@ -3,6 +3,7 @@ package ru.sergo.todoapp.todoback.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import ru.sergo.todoapp.todoback.dto.BaseResponse;
 import ru.sergo.todoapp.todoback.dto.TodoTaskDto;
 import ru.sergo.todoapp.todoback.interfaces.TasksService;
 
@@ -17,9 +18,10 @@ public class TodoTasksController {
     private final TasksService tasksService;
 
     @GetMapping("/my-tasks")
-    List<TodoTaskDto> getUserTasks() {
-        log.info("Getting user tasks");
-        return tasksService.getUserTasks();
+    @CrossOrigin(origins = "*")
+    BaseResponse getUserTasks() {
+        log.info("Getting userle tasks");
+        return new BaseResponse(tasksService.getUserTasks());
     }
 
     @PostMapping("/add-task")
