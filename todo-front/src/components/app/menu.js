@@ -1,13 +1,11 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import MenuTab from "./menu-tab";
 
 const Menu = () => {
     return (
-        <nav>
-            <ul>
-                <li><Link to='/'>Home</Link></li>
-                <li><Link to='/tasks'>Tasks</Link></li>
-            </ul>
+        <nav className="menu">
+            <MenuTab link="/" name="Home" />
+            <MenuTab link="/tasks" name="Tasks" />
         </nav>
     );
 };

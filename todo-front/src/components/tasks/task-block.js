@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const TaskBlock = ({
     task: {
@@ -8,12 +8,23 @@ const TaskBlock = ({
         endDate: date,
     }
 }) => {
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const changeIsOpen = () => {
+        setIsOpen(!isOpen);
+    }
+
     return (
-        <div className="task">
-            <div>{name}</div>
-            <div>{text}</div>
-            <div>{id}</div>
-            {date !== null && date !== undefined ? <div>{date}</div> : null}
+        <div className="task-block" onClick={changeIsOpen}>
+            <div className="task-block__header">
+                <div>{name}</div>
+                {date !== null && date !== undefined ? <div>{date}</div> : null}
+            </div>
+            <div className={`task-block__content ${isOpen? "" : "task-block__content_minimized"}`}>
+                <div>{text}</div>
+                <div>{id}</div>
+            </div>
         </div>
     )
 };

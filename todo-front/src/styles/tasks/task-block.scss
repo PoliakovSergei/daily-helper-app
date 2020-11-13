@@ -1,0 +1,36 @@
+.task-block {
+  background: bisque;
+  border: .1rem solid tan;
+  border-radius: .5rem;
+  display: grid;
+  margin-bottom: 0.5rem;
+  max-width: 400px;
+  max-height: 10rem;
+  width: 60vw;
+  justify-self: center;
+  transition: 0.2s linear 0s;
+
+  &__header {
+    padding: .2rem;
+    height: 100%;
+  }
+
+  &__content {
+    padding: .2rem;
+    max-height: 10rem;
+    transition: 0.5s linear 0s;
+    overflow: hidden;
+    border-top: .1rem solid tan;
+
+    &_minimized {
+      max-height: 0;
+      border-top: 0 solid tan;
+    }
+  }
+
+  &:hover {
+    background: palegoldenrod;
+    box-shadow: 5px 5px 5px rgba(tan, 0.5);
+    transform: translateX(-10px);
+  }
+}

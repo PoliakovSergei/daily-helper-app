@@ -1,0 +1,22 @@
+.menu {
+  padding: 0 1rem 0 1rem;
+  border-bottom: 0.2rem solid tan;
+
+  &__menu-tab {
+    display: inline-block;
+    padding: 0.7rem 2rem;
+    font-size: $font-size-default;
+    font-family: $font-family-default;
+    color: $font-color-default;
+    transition: 0.3s ease-in-out;
+    &_active {
+
+    }
+
+    &:hover {
+      text-decoration: none;
+      background: bisque;
+      color: $font-color-default;
+    }
+  }
+}

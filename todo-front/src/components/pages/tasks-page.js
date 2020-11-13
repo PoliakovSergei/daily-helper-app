@@ -1,34 +1,52 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { v4 as uuid } from 'uuid'
 import AddTaskForm from "../tasks/add-task-form";
 import TaskBlock from "../tasks/task-block";
-import {fetchTasks, selectAllTasks} from "../../redux/reducer/tasks";
+import { fetchTasks } from "../../redux/reducer/tasks";
 
-const TasksPage = () => {
-    const dispatch = useDispatch();
-    const tasks = useSelector(selectAllTasks);
-    const tasksStatus = useSelector(state => state.tasks.status);
+const TasksPage = ({
+    fetchTasks,
+    tasks,
+    tasksStatus
+}) => {
 
     useEffect(() => {
         if (tasksStatus === 'idle') {
-            dispatch(fetchTasks())
+            fetchTasks();
         }
-    }, [tasksStatus, dispatch])
+    }, [tasksStatus])
 
     return (
-        <div className="page">
-            <h1>Страница с задачами</h1>
-            <AddTaskForm />
-            {
-                (tasks !== null && tasks.length !== 0) ?
-                    tasks.slice().reverse().map(task => (
-                        <TaskBlock key={uuid()} task={task} />
-                    ))
-                    : null
-            }
+        <div className="page page__tasks">
+            <div style={{gridColumn: 2}}>
+                {
+                    (tasks !== null && tasks.length !== 0) ?
+                        tasks.slice().reverse().map(task => (
+                            <TaskBlock key={uuid()} task={task} />
+                        )) : null
+                }
+            </div>
+            <div style={{gridColumn: 4}}>
+                <AddTaskForm />
+            </div>
         </div>
     )
 }
 
-export default TasksPage;
+const mapStateToProps = (state) => {
+    return {
+        tasks: state.tasks.list,
+        tasksStatus: state.tasks.status,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchTasks: () => dispatch(fetchTasks())
+    }
+}
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TasksPage);

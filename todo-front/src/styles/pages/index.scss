@@ -1,4 +1,11 @@
 .page {
   display: grid;
   justify-content: center;
+  padding-top: 2rem;
+
+  &__tasks {
+    grid-template-columns: 3rem auto 2rem auto 1rem;
+    justify-content: left;
+  }
+
 }

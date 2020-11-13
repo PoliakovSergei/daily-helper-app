@@ -1,20 +1,17 @@
 import React, {useState} from 'react';
-import {useDispatch} from "react-redux";
+import { connect } from "react-redux";
 import { addTask } from "../../redux/reducer/tasks";
 
-const AddTaskForm = () => {
+const AddTaskForm = ({ addTask }) => {
     const [name, setName] = useState('');
     const [text, setText] = useState('');
-
-    const dispatch = useDispatch();
 
     const onNameChange = e => setName(e.target.value);
     const onTextChange = e => setText(e.target.value);
 
     const onAddTaskClicked = () => {
         if (name && text) {
-            dispatch(addTask(name, text))
-
+            addTask(name, text);
             setName('');
             setText('');
         }
@@ -24,36 +21,48 @@ const AddTaskForm = () => {
 
     return (
         <div className="task-add-form">
-            <h3>Add task</h3>
-            <div className="task-add-form__description">
-                <div className="task-add-form__description_col1">Название таски</div>
-                <div className="task-add-form__description_col2">Описание таски</div>
-            </div>
-            <div className="task-add-form__input">
+            <div className="task-add-form__header">Add task</div>
+            <div className="task-add-form__task_name">
+                <div className="task-add-form__task_name_col1">Название таски</div>
                 <input
+                    className="task-add-form__task_name_col2"
                     type="text"
                     id='taskName'
                     name='taskName'
                     value={name}
                     onChange={onNameChange}
                 />
-                <input
-                    type="text"
+            </div>
+            <div className="task-add-form__task_desc">
+                <div className="task-add-form__task_desc_col1">Описание таски</div>
+                <textarea
+                    className="task-add-form__task_desc_col2"
                     id='taskText'
                     name='taskText'
                     value={text}
                     onChange={onTextChange}
                 />
+            </div>
+            <div className="task-add-form__button">
                 <button
                     type='button'
                     onClick={onAddTaskClicked}
                     disabled={!canSave}
                 >
-                    Save
+                    Add
                 </button>
             </div>
         </div>
     );
 };
 
-export default AddTaskForm;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addTask: (name, text) => dispatch(addTask(name, text))
+    }
+}
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(AddTaskForm);
