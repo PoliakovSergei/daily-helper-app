@@ -1,11 +1,28 @@
+@import "../constants";
+
 .page {
   display: grid;
   justify-content: center;
-  padding-top: 2rem;
+  padding: 2rem;
+  height: $content-vh;
+  max-height: $content-vh;
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: auto;
 
   &__tasks {
-    grid-template-columns: 3rem auto 2rem auto 1rem;
-    justify-content: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  @media (min-width: 45rem)  {
+    &__tasks {
+      flex-direction: row-reverse;
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
   }
 
 }

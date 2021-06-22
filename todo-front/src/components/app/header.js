@@ -1,7 +1,10 @@
 import React from 'react';
+import Menu from "./menu";
 
 const Header = () => {
-    return (<div>Header</div>);
+    return <div className="header">
+        Header
+    </div>;
 }
 
 export default Header;

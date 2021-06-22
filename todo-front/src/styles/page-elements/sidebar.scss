@@ -1,0 +1,20 @@
+.sidebar {
+  min-width: 5rem;
+  width: 20vw;
+  background-color: $secondary-color;
+  transition: all 300ms ease-in;
+  transition-property: width, min-width;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  &_minimized {
+    width: 3rem;
+    min-width: 3rem;
+  }
+
+  &__minimize-btn {
+    justify-self: flex-end;
+    margin-bottom: 1rem;
+  }
+}

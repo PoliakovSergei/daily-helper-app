@@ -1,12 +1,18 @@
 import React from 'react';
 import Content from "./content";
-import Menu from "./menu";
+import Sidebar from "./sidebar";
+import Footer from "./footer";
+import Header from "./header";
 
 const App = () => {
     return (
-        <div>
-            <Menu />
-            <Content />
+        <div className="app">
+            <Header/>
+            <div className="flex-row">
+                <Sidebar/>
+                <Content/>
+            </div>
+            <Footer/>
         </div>
     )
 }

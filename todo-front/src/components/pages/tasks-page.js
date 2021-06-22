@@ -19,6 +19,9 @@ const TasksPage = ({
 
     return (
         <div className="page page__tasks">
+            <div style={{gridColumn: 4}}>
+                <AddTaskForm />
+            </div>
             <div style={{gridColumn: 2}}>
                 {
                     (tasks !== null && tasks.length !== 0) ?
@@ -26,9 +29,6 @@ const TasksPage = ({
                             <TaskBlock key={uuid()} task={task} />
                         )) : null
                 }
-            </div>
-            <div style={{gridColumn: 4}}>
-                <AddTaskForm />
             </div>
         </div>
     )

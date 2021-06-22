@@ -1,13 +1,21 @@
+@import "../constants";
+
 .task-add-form {
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto auto auto auto;
-  border: 0.2rem solid tan;
+  border: 0.2rem solid $primary-color;
   border-radius: 0.5rem;
   padding: 0.5rem;
-  background-color: bisque;
+  background-color: $secondary-color;
   height: 12rem;
   min-width: 25rem;
+  margin-bottom: 1rem;
+  position: fixed;
+
+  @media (min-width: 45rem)  {
+    margin-left: 1rem;
+  }
 
   &__header {
     grid-column: 1/2;

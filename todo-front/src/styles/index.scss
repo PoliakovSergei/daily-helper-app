@@ -2,3 +2,9 @@
 @import './tasks';
 @import './pages';
 @import './page-elements';
+@import "./common";
+
+* {
+  color: $font-color-default;
+  overflow: hidden;
+}

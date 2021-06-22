@@ -1,21 +1,27 @@
 .menu {
-  padding: 0 1rem 0 1rem;
-  border-bottom: 0.2rem solid tan;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   &__menu-tab {
-    display: inline-block;
-    padding: 0.7rem 2rem;
+    border-bottom: 0.1rem solid $primary-color;
+    padding: 0.7rem 0;
     font-size: $font-size-default;
     font-family: $font-family-default;
     color: $font-color-default;
     transition: 0.3s ease-in-out;
-    &_active {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 
+    &_active {
+      border-right: 0.2rem solid $primary-color;
+      border-bottom: 0.2rem solid $primary-color;
     }
 
     &:hover {
       text-decoration: none;
-      background: bisque;
+      background: $primary-color;
       color: $font-color-default;
     }
   }

@@ -1,6 +1,6 @@
 .task-block {
-  background: bisque;
-  border: .1rem solid tan;
+  background: $secondary-color;
+  border: .1rem solid $primary-color;
   border-radius: .5rem;
   display: grid;
   margin-bottom: 0.5rem;
@@ -9,6 +9,7 @@
   width: 60vw;
   justify-self: center;
   transition: 0.2s linear 0s;
+  margin-left: 10px;
 
   &__header {
     padding: .2rem;
@@ -20,17 +21,17 @@
     max-height: 10rem;
     transition: 0.5s linear 0s;
     overflow: hidden;
-    border-top: .1rem solid tan;
+    border-top: .1rem solid $primary-color;
 
     &_minimized {
       max-height: 0;
-      border-top: 0 solid tan;
+      border-top: 0 solid $primary-color;
     }
   }
 
   &:hover {
-    background: palegoldenrod;
-    box-shadow: 5px 5px 5px rgba(tan, 0.5);
+    background: $secondary-color;
+    box-shadow: 5px 5px 5px rgba($primary-color, 0.5);
     transform: translateX(-10px);
   }
 }

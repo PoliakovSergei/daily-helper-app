@@ -8,7 +8,7 @@ const Content = () => {
         <Switch>
             <Route exact path='/' component={HomePage}/>
             <Route path='/tasks' component={TasksPage}/>
-            <Redirect to="/" />
+            <Redirect to="/"/>
         </Switch>
     );
 };

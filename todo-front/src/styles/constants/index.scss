@@ -1,3 +1,10 @@
 $font-size-default: 14pt;
-$font-color-default: #110f0f;
+$font-color-default: #372E2F;
 $font-family-default: Helvetica, sans-serif;
+
+$primary-color: #558279;
+$secondary-color: #AEBDB8;
+
+$header-vh: 10vh;
+$footer-vh: 5vh;
+$content-vh: 100vh - $header-vh - $footer-vh;
