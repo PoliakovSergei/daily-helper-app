@@ -13,6 +13,7 @@
     <artifactId>TodoWebApp</artifactId>
     <version>0.0.1</version>
     <name>TodoWebApp</name>
+    <packaging>pom</packaging>
 
     <properties>
         <todo.app.back.version>0.0.1</todo.app.back.version>

@@ -20,7 +20,7 @@ public class TodoTasksController {
     @GetMapping("/my-tasks")
     @CrossOrigin(origins = "*")
     BaseResponse getUserTasks() {
-        log.info("Getting userle tasks");
+        log.info("Getting user tasks");
         return new BaseResponse(tasksService.getUserTasks());
     }
 
