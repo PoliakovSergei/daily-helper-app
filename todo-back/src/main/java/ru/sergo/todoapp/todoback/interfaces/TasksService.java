@@ -1,10 +1,11 @@
 package ru.sergo.todoapp.todoback.interfaces;
 
-import ru.sergo.todoapp.todoback.dto.TodoTaskDto;
+import ru.sergo.todoapp.todoback.entity.Task;
 
 import java.util.List;
 
 public interface TasksService {
-    TodoTaskDto addUserTask(TodoTaskDto taskInfo);
-    List<TodoTaskDto> getUserTasks();
+    Task addUserTask(Task taskInfo);
+    List<Task> getSelfTasks();
+    List<Task> getAllTasks();
 }

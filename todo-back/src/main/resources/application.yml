@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5436/postgres
+    username: user
+    password: passw0rd
+    driver-class-name:
+
+  liquibase:
+    change-log: classpath:liquibase/dbChangeLog.xml

@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+    db:
+        build: ./postgre-db
+        image: todo-postgre-db:latest
+        container_name: "todo-postgre-db"
+        environment:
+            POSTGRES_USER: user
+            POSTGRES_PASSWORD: passw0rd
+            POSTGRES_DB: postgres
+        volumes:
+            - ./postgre-db/data:/var/lib/postgresql/data
+        ports:
+                - "5436:5432"
+        restart: always
+
+
+
+

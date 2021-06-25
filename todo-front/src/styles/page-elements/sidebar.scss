@@ -13,6 +13,13 @@
     min-width: 3rem;
   }
 
+  &__control-btns {
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
   &__minimize-btn {
     justify-self: flex-end;
     margin-bottom: 1rem;

@@ -18,8 +18,10 @@ const Sidebar = () => {
     }
 
     return (<div className={getClassList()}>
-        <Menu />
-        <button className="sidebar__minimize-btn" onClick={applyMinimizedButton}>Minimize</button>
+        <Menu/>
+        <div className="sidebar__control-btns">
+            <button className="sidebar__minimize-btn" onClick={applyMinimizedButton}>Minimize</button>
+        </div>
     </div>)
 }
 
