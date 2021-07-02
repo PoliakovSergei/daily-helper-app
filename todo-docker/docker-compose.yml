@@ -15,6 +15,14 @@ services:
                 - "5436:5432"
         restart: always
 
+    todoapp:
+        image: docker.io/library/todo-back:0.0.1
+        container_name: "todo-app-native"
+        links:
+            - "db:database"
+        ports:
+            - "8081:8080"
+
 
 
 

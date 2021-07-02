@@ -1,4 +1,9 @@
 .idea
+.gradle
+gradle
+gradlew
+gradlew.bat
+build
 *.iml
 **/target
 /todo-front/node_modules/

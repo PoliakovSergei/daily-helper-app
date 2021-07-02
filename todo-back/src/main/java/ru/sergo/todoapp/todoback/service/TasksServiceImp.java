@@ -2,6 +2,8 @@ package ru.sergo.todoapp.todoback.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.sergo.todoapp.todoback.dto.Response;
+import ru.sergo.todoapp.todoback.dto.Response.ResponseBuilder;
 import ru.sergo.todoapp.todoback.entity.Task;
 import ru.sergo.todoapp.todoback.interfaces.TasksService;
 import ru.sergo.todoapp.todoback.repository.TodoTaskRepository;
@@ -15,19 +17,21 @@ public class TasksServiceImp implements TasksService {
     private final TodoTaskRepository todoTaskRepository;
 
     @Override
-    public Task addUserTask(Task taskInfo) {
+    public Response<Task> addUserTask(Task taskInfo) {
         taskInfo = todoTaskRepository.save(taskInfo);
-        return taskInfo;
+        return ResponseBuilder.ok(taskInfo);
     }
 
     @Override
-    public List<Task> getSelfTasks() {
+    public Response<List<Task>> getSelfTasks() {
         //TODO get by username
-        return todoTaskRepository.findAll();
+        List<Task> resultTasks = todoTaskRepository.findAll();
+        return ResponseBuilder.ok(resultTasks);
     }
 
     @Override
-    public List<Task> getAllTasks() {
-        return todoTaskRepository.findAll();
+    public Response<List<Task>> getAllTasks() {
+        List<Task> resultTasks = todoTaskRepository.findAll();
+        return ResponseBuilder.ok(resultTasks);
     }
 }

@@ -1,13 +1,15 @@
 package ru.sergo.todoapp.todoback.controller;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import ru.sergo.todoapp.todoback.dto.BaseResponse;
+import ru.sergo.todoapp.todoback.aspect.LoggerAspect.LogBefore;
+import ru.sergo.todoapp.todoback.dto.Response;
 import ru.sergo.todoapp.todoback.entity.Task;
 import ru.sergo.todoapp.todoback.interfaces.TasksService;
 
-@Slf4j
+import java.util.List;
+
+@LogBefore
 @RestController
 @RequestMapping("/tasks")
 @RequiredArgsConstructor
@@ -16,22 +18,17 @@ public class TodoTasksController {
     private final TasksService tasksService;
 
     @GetMapping("/my-tasks")
-    @CrossOrigin(origins = "*")
-    BaseResponse getUserTasks() {
-        log.info("Get user tasks request");
-        return new BaseResponse(tasksService.getSelfTasks());
+    public Response<List<Task>> getUserTasks() {
+        return tasksService.getSelfTasks();
     }
 
     @GetMapping("/all")
-    @CrossOrigin(origins = "*")
-    BaseResponse getAllTasks() {
-        log.info("Get all tasks request");
-        return new BaseResponse(tasksService.getAllTasks());
+    public Response<List<Task>> getAllTasks() {
+        return tasksService.getAllTasks();
     }
 
     @PostMapping("/add-task")
-    Task addUserTask(@RequestBody Task taskInfo) {
-        log.info("Adding user task");
+    public Response<Task> addUserTask(@RequestBody Task taskInfo) {
         return tasksService.addUserTask(taskInfo);
     }
 }
