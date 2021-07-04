@@ -6,4 +6,4 @@ gradlew.bat
 build
 *.iml
 **/target
-/todo-front/node_modules/
+node_modules/
