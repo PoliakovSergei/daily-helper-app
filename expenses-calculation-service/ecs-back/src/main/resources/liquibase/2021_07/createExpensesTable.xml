@@ -1,0 +1,44 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <property name="uuid_type" value="uuid" dbms="postgresql"/>
+    <property name="uuid_type" value="uniqueidentifier" dbms="mssql"/>
+    <property name="uuid_type" value="RAW(16)" dbms="oracle"/>
+
+    <property name="uuid_function" value="uuid_generate_v4()" dbms="postgresql"/>
+    <property name="uuid_function" value="NEWID()" dbms="mssql"/>
+    <property name="uuid_function" value="sys_guid()" dbms="oracle"/>
+
+    <property name="schema_name" value="ecs_app"/>
+
+    <changeSet id="createExtension" author="Sergei">
+        <sql dbms="postgresql" endDelimiter=";">
+            CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+        </sql>
+    </changeSet>
+
+    <changeSet id="expensesTableCreate" author="Sergei">
+        <preConditions>
+            <not>
+                <tableExists tableName="EXPENSES" schemaName="${schema_name}"/>
+            </not>
+        </preConditions>
+        <createTable tableName="EXPENSES" schemaName="${schema_name}">
+            <column name="id" type="${uuid_type}" defaultValueComputed="${uuid_function}">
+                <constraints nullable="false" unique="true" />
+            </column>
+            <column name="EXPENSES_GROUP" type="VARCHAR(255)"/>
+            <column name="EXPENSES_DESCRIPTION" type="VARCHAR(255)"/>
+            <column name="EXPENSES_DATE" type="TIMESTAMP"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="EXPENSES" schemaName="${schema_name}"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

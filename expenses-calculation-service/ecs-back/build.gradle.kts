@@ -1,6 +1,10 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     java
+    kotlin("jvm") version "1.5.20"
     id("org.springframework.boot") version "2.0.1.RELEASE"
+    id("org.jetbrains.kotlin.plugin.spring") version "1.5.20"
 }
 
 val mainClassPath = "ru.sergo.ecs.ecsback.EcsBackApplication"
@@ -33,9 +37,18 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.12")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:2.3.4.RELEASE")
+    implementation(kotlin("stdlib-jdk8"))
 }
 
 repositories {
     mavenLocal()
     mavenCentral()
+}
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.kotlinOptions {
+    jvmTarget = "1.8"
+}
+val compileTestKotlin: KotlinCompile by tasks
+compileTestKotlin.kotlinOptions {
+    jvmTarget = "1.8"
 }
