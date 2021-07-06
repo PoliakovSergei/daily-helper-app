@@ -27,9 +27,12 @@ springBoot {
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.5.20")
+
     implementation("org.springframework.boot:spring-boot-starter-web:2.3.4.RELEASE")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.3.4.RELEASE")
     implementation("org.springframework.boot:spring-boot-starter-security:2.3.4.RELEASE")
+
     implementation("org.liquibase:liquibase-core:3.8.9")
     implementation("org.postgresql:postgresql:42.2.16")
     implementation("org.projectlombok:lombok:1.18.12")

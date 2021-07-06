@@ -1,13 +1,11 @@
 package ru.sergo.ecs.ecsback.controller
 
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import ru.sergo.ecs.ecsback.aspect.LogBefore
 import ru.sergo.ecs.ecsback.dto.ExpensesDto
 import ru.sergo.ecs.ecsback.dto.Response
 import ru.sergo.ecs.ecsback.service.ExpensesService
+import java.util.*
 
 @LogBefore
 @RestController
@@ -18,5 +16,14 @@ class ExpensesController(open val expensesService: ExpensesService) {
     fun getAllExpenses(): Response<List<ExpensesDto>> = expensesService.getAll()
 
     @PostMapping("/add")
-    fun addExpenses(expenses: ExpensesDto): Response<ExpensesDto> = expensesService.addExpenses(expenses)
+    fun addExpenses(@RequestBody expenses: ExpensesDto): Response<ExpensesDto> = expensesService.addExpenses(expenses)
+
+    @PutMapping("/update")
+    fun updateExpenses(@RequestBody expenses: ExpensesDto): Response<ExpensesDto> = expensesService.updateExpenses(expenses)
+
+    @DeleteMapping("/delete/{uuid}")
+    fun deleteExpenses(@PathVariable uuid: UUID): Response<UUID> = expensesService.deleteExpensesById(uuid)
+
+    @GetMapping("/available-currencies")
+    fun getAvailableCurrency(): Response<Set<Currency>> = expensesService.getAvailableCurrencies()
 }
