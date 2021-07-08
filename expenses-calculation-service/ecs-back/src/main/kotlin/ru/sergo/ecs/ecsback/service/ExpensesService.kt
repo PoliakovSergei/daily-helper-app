@@ -4,36 +4,30 @@ import org.springframework.stereotype.Service
 import ru.sergo.ecs.ecsback.converter.expensesFromDtoToEntity
 import ru.sergo.ecs.ecsback.converter.expensesFromEntityToDto
 import ru.sergo.ecs.ecsback.dto.ExpensesDto
-import ru.sergo.ecs.ecsback.dto.Response
 import ru.sergo.ecs.ecsback.repository.ExpensesRepository
 import java.util.*
 
 @Service
 class ExpensesService(val expensesRepository: ExpensesRepository) {
 
-    fun getAll(): Response<List<ExpensesDto>> {
-        val expensesDtoList = expensesRepository.findAll()
-            .map { expensesFromEntityToDto(it) }
-        return Response.ok(expensesDtoList)
-    }
+    fun getAll(): List<ExpensesDto> =
+        expensesRepository.findAll().map { expensesFromEntityToDto(it) }
 
-    fun addExpenses(expensesDto: ExpensesDto): Response<ExpensesDto> {
+    fun addExpenses(expensesDto: ExpensesDto): ExpensesDto {
         val expensesEntity = expensesRepository.save(expensesFromDtoToEntity(expensesDto))
-        return Response.ok(expensesFromEntityToDto(expensesEntity))
+        return expensesFromEntityToDto(expensesEntity)
     }
 
-    fun updateExpenses(expensesDto: ExpensesDto): Response<ExpensesDto> {
+    fun updateExpenses(expensesDto: ExpensesDto): ExpensesDto {
         val expensesEntity = expensesRepository.save(expensesFromDtoToEntity(expensesDto))
-        return Response.ok(expensesFromEntityToDto(expensesEntity))
+        return expensesFromEntityToDto(expensesEntity)
     }
 
-    fun deleteExpensesById(uuid: UUID): Response<UUID> {
+    fun deleteExpensesById(uuid: UUID): UUID {
         expensesRepository.deleteById(uuid)
-        return Response.ok(uuid)
+        return uuid
     }
 
-    fun getAvailableCurrencies(): Response<Set<Currency>> {
-        return Response.ok(Currency.getAvailableCurrencies())
-    }
+    fun getAvailableCurrencies(): Set<Currency> = Currency.getAvailableCurrencies()
 
 }
