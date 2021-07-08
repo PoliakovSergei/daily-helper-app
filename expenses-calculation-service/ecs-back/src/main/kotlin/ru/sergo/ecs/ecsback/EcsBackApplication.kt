@@ -9,4 +9,3 @@ class EcsBackApplication
 fun main(args: Array<String>) {
     runApplication<EcsBackApplication>(*args)
 }
-
