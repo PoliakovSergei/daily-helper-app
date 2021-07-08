@@ -1,5 +1,7 @@
 package ru.sergo.ecs.ecsback.controller
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import ru.sergo.ecs.ecsback.aspect.LogBefore
@@ -12,6 +14,10 @@ import java.util.*
 @RestController
 @RequestMapping("/expenses")
 class ExpensesController(open val expensesService: ExpensesService) {
+
+    companion object {
+        private val log: Logger = LoggerFactory.getLogger(this::class.java)
+    }
 
     @GetMapping("/get")
     fun getAllExpenses(): Response<List<ExpensesDto>> =
@@ -34,6 +40,9 @@ class ExpensesController(open val expensesService: ExpensesService) {
         Response.ok(expensesService.getAvailableCurrencies())
 
     @ExceptionHandler(Exception::class)
-    protected fun handleException(e: Exception): Response<Any> =
-        Response.fail(HttpStatus.INTERNAL_SERVER_ERROR, "Ошибка в контроллере Expenses: " + e.message)
+    protected fun handleException(e: Exception): Response<Any> {
+        val msg = "Ошибка в контроллере Expenses: " + e.message
+        log.error(msg)
+        return Response.fail(HttpStatus.INTERNAL_SERVER_ERROR, msg)
+    }
 }
